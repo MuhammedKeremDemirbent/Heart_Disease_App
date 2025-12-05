@@ -58,8 +58,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panelmid = new System.Windows.Forms.Panel();
-            this.label15 = new System.Windows.Forms.Label();
             this.panelHowToUse = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panelmid.SuspendLayout();
@@ -391,6 +391,18 @@
             this.panelmid.Size = new System.Drawing.Size(1065, 665);
             this.panelmid.TabIndex = 28;
             // 
+            // panelHowToUse
+            // 
+            this.panelHowToUse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelHowToUse.Controls.Add(this.label15);
+            this.panelHowToUse.Controls.Add(this.label13);
+            this.panelHowToUse.Controls.Add(this.label14);
+            this.panelHowToUse.Location = new System.Drawing.Point(436, 0);
+            this.panelHowToUse.Name = "panelHowToUse";
+            this.panelHowToUse.Size = new System.Drawing.Size(629, 665);
+            this.panelHowToUse.TabIndex = 28;
+            // 
             // label15
             // 
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -402,18 +414,6 @@
             this.label15.TabIndex = 27;
             this.label15.Text = "If you are female, you have to enter 1.0. Other one 0.0\r\nIf you are from Clevelan" +
     "d , you have to enter 1.0. Others one 0.0\r\nSo if you have, you text 1.0";
-            // 
-            // panelHowToUse
-            // 
-            this.panelHowToUse.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelHowToUse.Controls.Add(this.label15);
-            this.panelHowToUse.Controls.Add(this.label13);
-            this.panelHowToUse.Controls.Add(this.label14);
-            this.panelHowToUse.Location = new System.Drawing.Point(436, 0);
-            this.panelHowToUse.Name = "panelHowToUse";
-            this.panelHowToUse.Size = new System.Drawing.Size(629, 558);
-            this.panelHowToUse.TabIndex = 28;
             // 
             // Form1
             // 
