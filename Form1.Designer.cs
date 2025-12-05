@@ -42,7 +42,7 @@
             this.txtbx_dataset_hungary = new System.Windows.Forms.TextBox();
             this.txtbx_dataset_switzerland = new System.Windows.Forms.TextBox();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblTop = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -58,6 +58,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panelmid = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelLeft.SuspendLayout();
             this.panelmid.SuspendLayout();
@@ -130,7 +131,7 @@
             // 
             this.lbl_result.AutoSize = true;
             this.lbl_result.Font = new System.Drawing.Font("Nirmala UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_result.Location = new System.Drawing.Point(28, 51);
+            this.lbl_result.Location = new System.Drawing.Point(15, 497);
             this.lbl_result.Name = "lbl_result";
             this.lbl_result.Size = new System.Drawing.Size(156, 25);
             this.lbl_result.TabIndex = 9;
@@ -165,23 +166,26 @@
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.MistyRose;
-            this.panelTop.Controls.Add(this.label12);
+            this.panelTop.Controls.Add(this.lblTop);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1073, 100);
             this.panelTop.TabIndex = 13;
             // 
-            // label12
+            // lblTop
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label12.Location = new System.Drawing.Point(376, 31);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(342, 32);
-            this.label12.TabIndex = 25;
-            this.label12.Text = "Heart Disease Application";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblTop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTop.AutoSize = true;
+            this.lblTop.Font = new System.Drawing.Font("Nirmala UI", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTop.Location = new System.Drawing.Point(303, 19);
+            this.lblTop.Name = "lblTop";
+            this.lblTop.Size = new System.Drawing.Size(512, 54);
+            this.lblTop.TabIndex = 25;
+            this.lblTop.Text = "Heart Disease Application";
+            this.lblTop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
@@ -306,11 +310,12 @@
             // 
             // label13
             // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label13.Location = new System.Drawing.Point(429, 31);
+            this.label13.Font = new System.Drawing.Font("Nirmala UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(281, 23);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(272, 29);
+            this.label13.Size = new System.Drawing.Size(355, 41);
             this.label13.TabIndex = 25;
             this.label13.Text = "How To Use Application";
             // 
@@ -318,13 +323,13 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label14.Location = new System.Drawing.Point(415, 73);
+            this.label14.Location = new System.Drawing.Point(285, 86);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(334, 72);
             this.label14.TabIndex = 26;
-            this.label14.Text = "You need to enter your bleeding variables,\r\n such as cholesterol and talus. \r\nThe" +
-    "n, enter the correct variables in the text box. \r\nFinally, click the predict but" +
-    "ton to see your results.";
+            this.label14.Text = "    You need to enter your bleeding variables, \r\nsuch as cholesterol and talus. \r" +
+    "\nThen, enter the correct variables in the text box. \r\nFinally, click the predict" +
+    " button to see your results.";
             // 
             // panelLeft
             // 
@@ -361,6 +366,7 @@
             // panelmid
             // 
             this.panelmid.BackColor = System.Drawing.Color.RosyBrown;
+            this.panelmid.Controls.Add(this.label15);
             this.panelmid.Controls.Add(this.label14);
             this.panelmid.Controls.Add(this.lbl_result);
             this.panelmid.Controls.Add(this.label13);
@@ -369,6 +375,17 @@
             this.panelmid.Name = "panelmid";
             this.panelmid.Size = new System.Drawing.Size(761, 531);
             this.panelmid.TabIndex = 28;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label15.Location = new System.Drawing.Point(285, 166);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(426, 54);
+            this.label15.TabIndex = 27;
+            this.label15.Text = "If you are female, you have to enter 1.0. Other one 0.0\r\nIf you are from Clevelan" +
+    "d , you have to enter 1.0. Others one 0.0\r\nSo if you have, you text 1.0";
             // 
             // Form1
             // 
@@ -417,11 +434,12 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblTop;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Panel panelmid;
+        private System.Windows.Forms.Label label15;
     }
 }
 
