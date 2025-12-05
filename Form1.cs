@@ -1,4 +1,4 @@
-﻿using Heart_Disease_App.Model;
+﻿using Heart_Disease_App.ML_Model;
 //ONNX Runtime namespaces
 using Microsoft.ML.OnnxRuntime;
 using Microsoft.ML.OnnxRuntime.Tensors;
@@ -28,8 +28,7 @@ namespace Heart_Disease_App
         {
             try
             {
-                // 1. Giriş Verilerini Topla ve Float'a Çevir
-                // ... (Bu kısım, Form1.cs kodunuzdaki gibi kalır veya GetValue metoduyla güncellenir) ...
+              
                 var inputData = new modelInput
                 {
                     gender = float.Parse(txtbx_gender.Text, System.Globalization.CultureInfo.InvariantCulture),
@@ -46,7 +45,7 @@ namespace Heart_Disease_App
 
                 };
 
-                string modelPath = System.IO.Path.Combine(Application.StartupPath, "Model", "heart_disease_model.onnx");
+                string modelPath = System.IO.Path.Combine(Application.StartupPath, "ML_Model", "heart_disease_model.onnx");
 
                 using (var session = new InferenceSession(modelPath))
                 {
@@ -55,7 +54,7 @@ namespace Heart_Disease_App
                   
                     var inputTensor = new DenseTensor<float>(new[] { 1, 11 });
 
-                    // ** 9 Özellik İçin Veriyi Python Çıktı Sırasına Göre Yerleştirme **
+                   
                     inputTensor[0, 0] = inputData.gender;                     // Female
                     inputTensor[0, 1] = inputData.dataset_cleveland;          // Cleveland
                     inputTensor[0, 2] = inputData.dataset_hungary;            // Hungary
@@ -83,7 +82,7 @@ namespace Heart_Disease_App
 
                         if (outputValue == null)
                         {
-                            lbl_result.Text = $"KRİTİK HATA: Model çıktısı '{outputName}' bulunamadı!";
+                            lbl_result.Text = $"CRITICAL ERROR: Model output '{outputName}' not found!";
                             return;
                         }
 
@@ -125,14 +124,14 @@ namespace Heart_Disease_App
                         if (!predictionSuccess)
                         {
                           
-                            lbl_result.Text = $"KRİTİK HATA: Model çıktı tipi hala tanınamıyor. Gerçek tip: {outputValue.Value.GetType().Name}";
+                            lbl_result.Text = $"CRITICAL ERROR: Model output type still not recognized. Actual type: {outputValue.Value.GetType().Name}";
                             return;
                         }
 
                       
                         string resultMessage = (predictionValue >= 0.5f)
-                            ? $"✅ Yüksek İhtimalle Kalp Hastalığı VAR. (Skor: {predictionValue})"
-                            : $"❌ Kalp Hastalığı Görülme İhtimali DÜŞÜK. (Skor: {predictionValue})";
+                            ? $"✅ There is a high probability of having heart disease. (Score: {predictionValue})"
+                            : $"❌ There is a low probability of having heart disease. (Score: {predictionValue})";
 
                         lbl_result.Text = resultMessage;
                     }
@@ -140,11 +139,11 @@ namespace Heart_Disease_App
             }
             catch (FormatException fe)
             {
-                lbl_result.Text = "GİRİŞ HATASI: Lütfen tüm girişlerin doğru formatta (sayı) olduğundan emin olun.";
+                lbl_result.Text = "ENTRY ERROR: Please ensure all entries are in the correct format (number).";
             }
             catch (Exception ex)
             {
-                lbl_result.Text = $"HATA: {ex.Message}";
+                lbl_result.Text = $"ERROR: {ex.Message}";
             }
         }
     }
