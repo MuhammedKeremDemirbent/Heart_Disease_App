@@ -31,14 +31,18 @@ namespace Heart_Disease_App
               
                 var inputData = new modelInput
                 {
-                    gender = float.Parse(txtbx_gender.Text, System.Globalization.CultureInfo.InvariantCulture),
-                    dataset_cleveland = float.Parse(txtbx_dataset_cleveland.Text, System.Globalization.CultureInfo.InvariantCulture),
-                    dataset_hungary = float.Parse(txtbx_dataset_hungary.Text, System.Globalization.CultureInfo.InvariantCulture),
-                    dataset_switzerland = float.Parse(txtbx_dataset_switzerland.Text, System.Globalization.CultureInfo.InvariantCulture),
-                    cp_asymptomatic = float.Parse(txtbx_cp_asymptomatic.Text, System.Globalization.CultureInfo.InvariantCulture),
-                    fbs_false = float.Parse(txtbx_fbs_false.Text, System.Globalization.CultureInfo.InvariantCulture),
-                    restecg_lv_hypertrophy = float.Parse(txtbx_restecg_lv_hypertrophy.Text, System.Globalization.CultureInfo.InvariantCulture),
-                    restecg_normal = float.Parse(txtbx_restecg_normal.Text, System.Globalization.CultureInfo.InvariantCulture),
+                    gender = comboBoxgender.SelectedIndex == 1 ? 1f : 0f,
+                    dataset_cleveland = comboBoxcleveland.SelectedIndex == 1 ? 1f : 0f,
+                    dataset_hungary = comboBoxhungary.SelectedIndex == 1 ? 1f : 0f,
+                    dataset_switzerland = comboBoxswitzerland.SelectedIndex == 1 ? 1f : 0f,
+
+                    cp_asymptomatic = comboBoxasymptomatic.SelectedIndex == 1 ? 1f : 0f,
+
+                    fbs_false = comboBoxfbs.SelectedIndex == 1 ? 1f : 0f,
+
+                    restecg_lv_hypertrophy = comboBoxreslvhyper.SelectedIndex == 1 ? 1f : 0f,
+                    restecg_normal = comboBoxresnormal.SelectedIndex == 1 ? 1f : 0f,
+
                     age = float.Parse(txtbx_age.Text, System.Globalization.CultureInfo.InvariantCulture),
                     trestbps = float.Parse(txtbx_trestbps.Text, System.Globalization.CultureInfo.InvariantCulture),
                     thalch = float.Parse(txtbx_thalch.Text, System.Globalization.CultureInfo.InvariantCulture),
@@ -73,67 +77,23 @@ namespace Heart_Disease_App
                 NamedOnnxValue.CreateFromTensor(inputName, inputTensor)
             };
 
-                   
+
                     using (var results = session.Run(inputs))
                     {
-                    
-                        string outputName = session.OutputMetadata.Keys.First();
-                        var outputValue = results.FirstOrDefault(r => r.Name == outputName);
+                        var labelOutput = results.FirstOrDefault(r => r.Name == "label");
+                        var labelTensor = labelOutput.Value as Tensor<long>;
+                        long predictionLabel = labelTensor.GetValue(0);
 
-                        if (outputValue == null)
-                        {
-                            lbl_result.Text = $"CRITICAL ERROR: Model output '{outputName}' not found!";
-                            return;
-                        }
-
-                        float predictionValue = 0.0f;
-                        bool predictionSuccess = false;
-
-                      
-                        Tensor<float> floatTensor = outputValue.Value as Tensor<float>;
-
-                        if (floatTensor != null)
-                        {
-                            predictionValue = floatTensor.GetValue(0);
-                            predictionSuccess = true;
-                        }
-                        else
-                        {
                        
-                            Tensor<long> longTensor = outputValue.Value as Tensor<long>;
+                        var probOutput = results.FirstOrDefault(r => r.Name == "probabilities");
+                        var probTensor = probOutput.Value as Tensor<float>;
 
-                            if (longTensor != null)
-                            {
-                              
-                                predictionValue = (float)longTensor.GetValue(0);
-                                predictionSuccess = true;
-                            }
-                            else
-                            {
-                              
-                                IEnumerable<float> floatArray = outputValue.Value as IEnumerable<float>;
-                                if (floatArray != null)
-                                {
-                                  
-                                    predictionValue = floatArray.First();
-                                    predictionSuccess = true;
-                                }
-                            }
-                        }
+                       
+                        float diseaseProbability = probTensor.GetValue(1);
 
-                        if (!predictionSuccess)
-                        {
-                          
-                            lbl_result.Text = $"CRITICAL ERROR: Model output type still not recognized. Actual type: {outputValue.Value.GetType().Name}";
-                            return;
-                        }
-
-                      
-                        string resultMessage = (predictionValue >= 0.5f)
-                            ? $"✅ There is a high probability of having heart disease. (Score: {predictionValue})"
-                            : $"❌ There is a low probability of having heart disease. (Score: {predictionValue})";
-
-                        lbl_result.Text = resultMessage;
+                        lbl_result.Text = diseaseProbability >= 0.5f
+                            ? $"✅ High Risk. (Prediction Score: %{diseaseProbability * 100:0.0})"
+                            : $"❌ Low Risk. (Prediction Score: %{diseaseProbability * 100:0.0})";
                     }
                 }
             }

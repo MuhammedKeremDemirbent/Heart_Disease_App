@@ -8,9 +8,7 @@ namespace Heart_Disease_App.ML_Model
 {
     internal class modelInput
     {
-        //Model Input Class. This class contains all the features used for making predictions. We need to add other variables.(Bad result)
         public float gender { get; set; }
-
         public float dataset_cleveland { get; set; }
         public float dataset_hungary { get; set; }
         public float dataset_switzerland { get; set; } 
